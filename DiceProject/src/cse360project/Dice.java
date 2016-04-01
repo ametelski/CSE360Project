@@ -5,7 +5,7 @@ package cse360project;
  * @author Nicole Gettelman
  * @author Adam Metelski
  * @author Zackary Crosley
- * @author Miguel Lopez
+ * @author Miguel Deniz Lopez
  * @version March 31, 2016
  *
  */
@@ -16,6 +16,6 @@ public class Dice
 	public static void main(String []args){
 		System.out.println("Adam Metelski was here!");
 		System.out.println("Zackary Crosley standing by.");
-		System.out.printf("Miguel Deniz\n");
+		System.out.printf("Miguel Deniz Lopez\n");
 	}
 }
