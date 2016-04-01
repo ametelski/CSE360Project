@@ -6,6 +6,7 @@ package cse360project;
  * @author Adam Metelski
  * @author Zackary Crosley
  * @author Miguel Deniz Lopez
+ * @author Michael Kintscher
  * @version March 31, 2016
  *
  */
@@ -17,5 +18,6 @@ public class Dice
 		System.out.println("Adam Metelski was here!");
 		System.out.println("Zackary Crosley standing by.");
 		System.out.printf("Miguel Deniz Lopez\n");
+		System.out.println("Michael Kintscher ready for battle.");
 	}
 }
