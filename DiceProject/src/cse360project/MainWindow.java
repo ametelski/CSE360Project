@@ -80,15 +80,16 @@ public class MainWindow {
 		
 		
 		
-
+		// code for start button click below 
 		btnStart.addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("resource")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Scanner scan; 
 				int numberOfPlayers = 0; 
-				scan = new Scanner(numOfPlayer.getText());
-				while(scan.hasNext()){
+				
+				while(numberOfPlayers == 0){
+					scan = new Scanner(numOfPlayer.getText());
 					if(scan.hasNextInt()){
 					numberOfPlayers = scan.nextInt(); 
 					}else{
