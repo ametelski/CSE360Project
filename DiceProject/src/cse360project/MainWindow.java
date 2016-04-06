@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class MainWindow {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField numOfPlayer;
 
 	/**
 	 * Launch the application.
@@ -61,10 +61,10 @@ public class MainWindow {
 		startMenu.setBounds(12, 11, 408, 229);
 		frame.getContentPane().add(startMenu);
 		
-		textField = new JTextField();
-		textField.setBounds(122, 138, 154, 22);
-		startMenu.add(textField);
-		textField.setColumns(10);
+		numOfPlayer = new JTextField();
+		numOfPlayer.setBounds(122, 138, 154, 22);
+		startMenu.add(numOfPlayer);
+		numOfPlayer.setColumns(10);
 		
 		JButton btnStart = new JButton("Start");
 		
@@ -80,13 +80,23 @@ public class MainWindow {
 		
 		
 		
-		
-		Scanner scan; ; 
+
 		btnStart.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("resource")
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				scan = new Scanner(txtpnEnterNumberOf.getText());
-		
+				Scanner scan; 
+				int numberOfPlayers = 0; 
+				scan = new Scanner(numOfPlayer.getText());
+				while(scan.hasNext()){
+					if(scan.hasNextInt()){
+					numberOfPlayers = scan.nextInt(); 
+					}else{
+						numOfPlayer.setText("");
+					}
+				}
+				System.out.println(numberOfPlayers);
+			}
 		});
-	
+	}
 }
