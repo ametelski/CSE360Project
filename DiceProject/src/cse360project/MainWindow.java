@@ -14,6 +14,7 @@ import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Scanner;
 
 public class MainWindow {
 
@@ -66,13 +67,8 @@ public class MainWindow {
 		textField.setColumns(10);
 		
 		JButton btnStart = new JButton("Start");
-		btnStart.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
 		
-		});
+		
 		btnStart.setBounds(146, 64, 97, 25);
 		startMenu.add(btnStart);
 		
@@ -81,5 +77,16 @@ public class MainWindow {
 		txtpnEnterNumberOf.setText("Enter Number of PLayer");
 		txtpnEnterNumberOf.setBounds(122, 103, 154, 22);
 		startMenu.add(txtpnEnterNumberOf);
-	}
+		
+		
+		
+		
+		Scanner scan; ; 
+		btnStart.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				scan = new Scanner(txtpnEnterNumberOf.getText());
+		
+		});
+	
 }
