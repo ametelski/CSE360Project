@@ -91,7 +91,7 @@ public class MainWindow {
 		frame.getContentPane().add(btnNewButton, BorderLayout.CENTER);
 		
 		
-		numOfPlayer = new JFormattedTextField(createFormatter("##"));
+		numOfPlayer = new JFormattedTextField(createFormatter("#"));
 		numOfPlayer.setBounds(122, 138, 154, 22);
 		startMenu.add(numOfPlayer);
 		numOfPlayer.setColumns(10);
@@ -110,9 +110,8 @@ public class MainWindow {
 		
 		
 		
-		// code for start button click below 
+		// Start button action below. 
 		btnStart.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("resource")
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String text = numOfPlayer.getText();
@@ -120,13 +119,18 @@ public class MainWindow {
 				
 				System.out.println("Text = " + text);
 				
-				if (text != "")
+				if (text != ""){
 					players = Integer.parseInt(text);
+					
+					if(players > 0){
+						startMenu.setVisible(false); // Start menu will be hidden 
+						gameFrame.setVisible(true); // Game frame will be displayed. 
+					}
+				}
 				
 				System.out.println(players);
 				
-				startMenu.setVisible(false);
-				gameFrame.setVisible(true);
+				
 			}
 		});
 	}
