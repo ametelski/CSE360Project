@@ -1,0 +1,40 @@
+
+
+The names are getting me confused and I constantly lose track of the names of the objects.
+I think we should adapt a naming standard. One that I have used in the past is to name every widget with a descriptive name at the beginning.
+
+Button - btn
+EditText - et
+TextView - tv
+Checkbox - chk
+RadioButton - rb
+ToggleButton - tb
+Spinner - spn
+Menu - mnu
+ListView - lv
+GalleryView - gv
+LinearLayout -ll
+RelativeLayout - rl
+
+Button btnStart = new Button();
+JFormattedTextField ftxtPlayers = new JFormattedTextField(createFormatter("##"));
+
+Also I think we should name class variables with a leading _. I have found it to be helpful when keeping track of class variables versus outside parameters.
+
+class Node
+{
+private:
+     int _key;
+     Node* _left;
+     Node* _right;
+
+public:
+     Node(int key, Node* left, Node* right)
+     {
+          _key = key;
+          _left = left;
+          _right = right;
+     }
+}
+
+Let me know what you guys think.
