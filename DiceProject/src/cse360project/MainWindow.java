@@ -2,14 +2,21 @@ package cse360project;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.text.MaskFormatter; 
+import javax.swing.text.MaskFormatter;
+import javax.swing.border.BevelBorder; 
 
 public class MainWindow extends JFrame {
 
 	/**
 	 * 
 	 */
+	Toolkit tk; 
+	
 	private static final long serialVersionUID = 1L;
 	private static CardLayout card = new CardLayout(); 
 	
@@ -24,10 +31,15 @@ public class MainWindow extends JFrame {
 	private JButton _btnRules; 
 	private JButton _btnMainMenu; 
 	
+	// testing images
+	Image picture; 
+	ImageIcon _image; 
+	JLabel _jlBackgroundImage; 
+	
 	public int _numOfPlayers = 0; 
 	
 	public MainWindow() {
-		Toolkit tk = Toolkit.getDefaultToolkit(); 
+	    tk = Toolkit.getDefaultToolkit(); 
 		Dimension dim = tk.getScreenSize(); 
 		
 		this.setSize(500,600);
@@ -41,20 +53,57 @@ public class MainWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Liar's Dice V1.0"); 
 		this.setResizable(false);
-		this.setLayout(card);
-		 
-		// create new JPanel for the start menu
-		_jplStartMenu = new JPanel(); 
-	
+		getContentPane().setLayout(card);
 		
+		// Start menu and game panel creation methods
+		createStartMenuPanel();
+		createGamePanel();
+		
+		
+		this.setVisible(true);
+	}
+	
+	/**
+	 * Method create the game panel and game panel buttons
+	 */
+	private void createGamePanel(){
 		// creates JPanel for game screen. 
 		_jplGamePanel = new JPanel(); 
+		_jplGamePanel.setLayout(null);
 		_jplGamePanel.setVisible(false);
-	
 		
-		// add start menu and game menu to main window
-		this.add(_jplGamePanel); 
-		this.add(_jplStartMenu);
+		// adds game menu to main window 
+		getContentPane().add(_jplGamePanel); 
+		
+		// create Rules button and actions for press
+		_btnRules = new JButton("Rules");
+		ListenFor_btnRules  l_btnRules =  new ListenFor_btnRules(); 
+		_btnRules.setBounds(146, 13, 107, 25);
+		_btnRules.addActionListener(l_btnRules);
+		_jplGamePanel.add(_btnRules); 
+		
+				
+		// create Main Menu button and action for press
+		_btnMainMenu = new JButton("Main Menu"); 
+		_btnMainMenu.setSize(107, 25);
+		_btnMainMenu.setLocation(253, 13);
+		ListenFor_btnMainMenu l_btnMainMenu = new ListenFor_btnMainMenu(); 
+		_btnMainMenu.addActionListener(l_btnMainMenu); 
+		_jplGamePanel.add(_btnMainMenu);
+		
+		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		layeredPane.setBackground(Color.LIGHT_GRAY);
+		layeredPane.setBounds(273, 101, 159, 35);
+		_jplGamePanel.add(layeredPane);
+	}
+
+	private void createStartMenuPanel(){
+		// create new JPanel for the start menu
+		_jplStartMenu = new JPanel(); 
+		
+		// add start menu main window
+		getContentPane().add(_jplStartMenu);
 		
 		// create start button
 		_btnStart = new JButton("Start"); 
@@ -79,23 +128,9 @@ public class MainWindow extends JFrame {
 		_tfSizeOfbet.setColumns(5);
 		_tfSizeOfbet.setToolTipText("Enter in starting Pot size");
 		_jplStartMenu.add(_tfSizeOfbet);
-	 
-		
-		// create Rules button and actions for press
-		_btnRules = new JButton("Rules");
-		ListenFor_btnRules  l_btnRules =  new ListenFor_btnRules(); 
-		_btnRules.addActionListener(l_btnRules);
-		_jplGamePanel.add(_btnRules); 
-		
-		// create Main Menu button and action for press
-		_btnMainMenu = new JButton("Main Menu"); 
-		ListenFor_btnMainMenu l_btnMainMenu = new ListenFor_btnMainMenu(); 
-		_btnMainMenu.addActionListener(l_btnMainMenu); 
-		_jplGamePanel.add(_btnMainMenu); 
 		
 		// set objects to visible
 		_jplStartMenu.setVisible(true);
-		this.setVisible(true);
 	}
 	
 	private class ListenFor_btnMainMenu implements ActionListener{
@@ -117,6 +152,25 @@ public class MainWindow extends JFrame {
 			_jfRulesFrame = new JFrame("Rules"); 
 			_jfRulesFrame.setSize(500,600);
 			
+			// testing adding a picture to the rules page
+		
+			try{
+				_jfRulesFrame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("index1.jpg")))));
+			}catch(IOException e1){
+				System.out.println("Image Doesn't exist");
+			}
+			
+			/*
+		
+			picture = tk.getImage("index1.jpg"); 
+			
+			_image = new ImageIcon(picture); 
+			_jlBackgroundImage = new JLabel(_image); 
+			
+			_jfRulesFrame.add(_jlBackgroundImage);
+			
+			*/
+		
 			// code here for displaying rules 
 			
 			_jfRulesFrame.setVisible(true); 
@@ -124,7 +178,7 @@ public class MainWindow extends JFrame {
 	}
 	
 	/**
-	 * Method listens for start button to be press. Them will execute the a page flip to the game page.  
+	 * Class listens for start button to be press. Them will execute the a page flip to the game page.  
 	 * 
 	 * @author Adam Metelski
 	 *
@@ -134,11 +188,13 @@ public class MainWindow extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Start button pressed"); 
+			
+			
 			String text = _tfNumOfPlayer.getText();
 			
-			System.out.println("Text = " + text);
+			System.out.println("Text =" + text );
 			
-			if (text != ""){
+			if (!text.equals(" ")){
 				_numOfPlayers = Integer.parseInt(text);
 				
 				if(_numOfPlayers > 0){
