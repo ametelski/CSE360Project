@@ -76,7 +76,7 @@ public class MainWindow extends JFrame {
 		// adds game menu to main window 
 		getContentPane().add(_jplGamePanel); 
 		
-		// Create dice roll panel				// added by Miguel 4/10/16 10:00pm
+		// Create dice roll panel
 		_jplDicePanel = new DicePanel(5);
 		_jplDicePanel.setVisible(true);
 		_jplDicePanel.setLocation(100, 250);
