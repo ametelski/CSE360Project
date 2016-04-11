@@ -23,6 +23,7 @@ public class MainWindow extends JFrame {
 	private JFrame _jfRulesFrame; 
 	private JPanel _jplStartMenu;
 	private JPanel _jplGamePanel;
+	private DicePanel _jplDicePanel;
 
 	private JFormattedTextField _tfNumOfPlayer;
 	private JFormattedTextField _tfSizeOfbet;
@@ -74,6 +75,12 @@ public class MainWindow extends JFrame {
 		
 		// adds game menu to main window 
 		getContentPane().add(_jplGamePanel); 
+		
+		// Create dice roll panel				// added by Miguel 4/10/16 10:00pm
+		_jplDicePanel = new DicePanel(5);
+		_jplDicePanel.setVisible(true);
+		_jplDicePanel.setLocation(100, 250);
+		_jplGamePanel.add(_jplDicePanel);
 		
 		// create Rules button and actions for press
 		_btnRules = new JButton("Rules");
