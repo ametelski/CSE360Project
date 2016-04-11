@@ -98,13 +98,11 @@ public class MainWindow extends JFrame {
 		_btnMainMenu.addActionListener(l_btnMainMenu); 
 		_jplGamePanel.add(_btnMainMenu);
 		
-		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		layeredPane.setBackground(Color.LIGHT_GRAY);
-		layeredPane.setBounds(273, 101, 159, 35);
-		_jplGamePanel.add(layeredPane);
 	}
-
+	
+	/** 
+	 * Method creates and the start menu panel, start button, number of players field, and pot size field. 
+	 */
 	private void createStartMenuPanel(){
 		// create new JPanel for the start menu
 		_jplStartMenu = new JPanel(); 
@@ -125,7 +123,7 @@ public class MainWindow extends JFrame {
 		_btnStart.addActionListener(l_btnStart);
 		
 		// creates text field for entering the number of players for the game. 
-		_tfNumOfPlayer = new JFormattedTextField(createFormatter("#"));;
+		_tfNumOfPlayer = new JFormattedTextField(createFormatter("#"));
 		_tfNumOfPlayer.setColumns(5);
 		_tfNumOfPlayer.setToolTipText("Enter the number of players");
 		_jplStartMenu.add(_tfNumOfPlayer);
@@ -140,6 +138,11 @@ public class MainWindow extends JFrame {
 		_jplStartMenu.setVisible(true);
 	}
 	
+	/**
+	 * Class Listens for the main menu button to be pressed and executes a page flip back to the start menu. 
+	 * @author Adam Metelski
+	 *
+	 */
 	private class ListenFor_btnMainMenu implements ActionListener{
 		@Override 
 		public void actionPerformed(ActionEvent e){
@@ -151,7 +154,11 @@ public class MainWindow extends JFrame {
 	}
 	
 	
-	
+	/**
+	 * Class Listens for the rules button to be pressed and executes opening up the rules panel. 
+	 * @author Adam Metelski
+	 *
+	 */
 	private class ListenFor_btnRules implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e){
@@ -166,19 +173,6 @@ public class MainWindow extends JFrame {
 			}catch(IOException e1){
 				System.out.println("Image Doesn't exist");
 			}
-			
-			/*
-		
-			picture = tk.getImage("index1.jpg"); 
-			
-			_image = new ImageIcon(picture); 
-			_jlBackgroundImage = new JLabel(_image); 
-			
-			_jfRulesFrame.add(_jlBackgroundImage);
-			
-			*/
-		
-			// code here for displaying rules 
 			
 			_jfRulesFrame.setVisible(true); 
 		}
@@ -214,6 +208,11 @@ public class MainWindow extends JFrame {
 		}
 	}	
 	
+	/** 
+	 *  Method creates a mask for the text field
+	 * @param s String input for digits to mask
+	 * @return 
+	 */
 	MaskFormatter createFormatter(String s) {
 	    MaskFormatter formatter = null;
 	    try {
@@ -225,96 +224,3 @@ public class MainWindow extends JFrame {
 	    return formatter;
 	}
 }
-
-
-
-/*
-	
-	public MainWindow() {
-		
-		
-		_startMenu = new JPanel();
-		_startMenu.setLayout(null);
-		_startMenu.setBounds(12, 11, 408, 229);
-		
-		_gameFrame = new JPanel();
-		_gameFrame.setVisible(false);
-		_gameFrame.setLayout(null);
-		_gameFrame.setBounds(12, 11, 408, 229);
-		_gameFrame.setBackground(Color.GREEN);
-		
-		initialize();
-	}
-
-	MaskFormatter createFormatter(String s) {
-	    MaskFormatter formatter = null;
-	    try {
-	        formatter = new MaskFormatter(s);
-	    } catch (java.text.ParseException exc) {
-	        System.err.println("formatter is bad: " + exc.getMessage());
-	        System.exit(-1);
-	    }
-	    return formatter;
-	}
-	
-	
-	private void initialize() {
-		_frame = new JFrame("Liar's Dice V1.0");
-		_frame.setVisible(true);
-		_frame.setBounds(100, 100, 450, 300);
-		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		_frame.getContentPane().add(startMenu);
-		_frame.getContentPane().add(gameFrame);
-		
-		_frame.getContentPane().setLayout(null); // Sets layout to null for free style layout. 
-		JButton btnNewButton = new JButton("Start");
-		_frame.getContentPane().add(btnNewButton, BorderLayout.CENTER);
-		
-		
-		_numOfPlayer = new JFormattedTextField(createFormatter("#"));
-		_numOfPlayer.setBounds(122, 138, 154, 22);
-		_startMenu.add(numOfPlayer);
-		_numOfPlayer.setColumns(10);
-		
-		JButton btnStart = new JButton("Start");
-		
-		
-		btnStart.setBounds(146, 64, 97, 25);
-		_startMenu.add(btnStart);
-		
-		JTextPane txtpnEnterNumberOf = new JTextPane();
-		txtpnEnterNumberOf.setBackground(UIManager.getColor("Button.background"));
-		txtpnEnterNumberOf.setText("Enter Number of PLayer");
-		txtpnEnterNumberOf.setBounds(122, 103, 154, 22);
-		startMenu.add(txtpnEnterNumberOf);
-		
-		
-		
-		// Start button action below. 
-		btnStart.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String text = numOfPlayer.getText();
-				int players = 0;
-				
-				System.out.println("Text = " + text);
-				
-				if (text != ""){
-					players = Integer.parseInt(text);
-					
-					if(players > 0){
-						startMenu.setVisible(false); // Start menu will be hidden 
-						gameFrame.setVisible(true); // Game frame will be displayed. 
-					}
-				}
-				
-				System.out.println(players);
-				
-				
-			}
-		});
-	}
-}
-
-*/ 
